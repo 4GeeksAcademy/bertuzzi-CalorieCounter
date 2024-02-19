@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Card from "react-bootstrap/Card";
+import { Context } from '../store/appContext';
 
 const Breakfast = () => {
 
-    const [food, setFood] = useState();
+    const [food, setFood] = useState({});
     const [amount, setAmount] = useState();
-    const [macros, setMacros] = useEffect({})
+    const [macros, setMacros] = useState({});
+    const { store, actions } = useContext(Context);
 
     const fetchMacros = async () => {
-        const url = ""; // `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_API_ID}&app_key=${process.env.REACT_API_KEY}&ingr=${food}&nutrition-type=cooking&calories=100-500&category=generic-meals`
+        const url = `https://api.edamam.com/api/nutrition-data?app_id=c6d34f6b&app_key=ad4f63207634378a114a5d09a9afb26a&nutrition-type=cooking&ingr=100%20g%20${food}`
         const options = {
             method: 'GET',
             headers: {
@@ -22,7 +23,7 @@ const Breakfast = () => {
         }
         const data = await response.json();
         const food = data.hints
-        console.log(food);
+        console.log(data);
 
         const nutrients = food.food.nutrients;
         const calories = (Math.round(nutrients.ENERC_KCAL) * amount) + ' Kcal';
@@ -36,16 +37,14 @@ const Breakfast = () => {
             fats: fats
         }
         setMacros(macronutrients);
-        console.Console(macronutrients);
-
-
-        // here we need to multiply macros x quantity
+        actions.logBreakfast(macronutrients)
+        console.log(macronutrients);
     }
 
 
     function handleLog(e) {
         e.preventDefault();
-        console.Console(food);
+        console.log(food);
         fetchMacros();
     }
 
@@ -65,6 +64,9 @@ const Breakfast = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Log food</button>
                     </form>
+                    <div id='macroCount'>
+                        hey
+                    </div>
                 </div>
             </div>
         </>
