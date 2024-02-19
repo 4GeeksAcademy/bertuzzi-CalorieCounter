@@ -1,5 +1,8 @@
 import React from "react";
 import Breakfast from "./Breakfast.jsx";
+import Lunch from "./Lunch.jsx";
+import Dinner from "./Dinner.jsx";
+import Snacks from "./Snacks.jsx";
 import Banner from "../component/Banner.jsx";
 import Footer from '../component/Footer.jsx';
 
@@ -10,9 +13,9 @@ export const Home = () => (
 			<div className="col-8 col-md-10 col-sm-12 m-auto">
 				<Banner />
 				<Breakfast />
-				{/* <Lunch /> */}
-				{/* <Dinner /> */}
-				{/* <Snacks /> */}
+				<Lunch />
+				<Dinner />
+				<Snacks />
 				<Footer />
 			</div>
 		</div>

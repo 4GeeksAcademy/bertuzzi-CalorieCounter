@@ -1,15 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
+import Loading from '../component/Spinner.jsx';
 
 const Breakfast = () => {
 
     const [food, setFood] = useState({});
     const [amount, setAmount] = useState();
-    const [macros, setMacros] = useState({});
+    const [macros, setMacros] = useState({
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fats: 0
+    });
     const { store, actions } = useContext(Context);
 
-    const fetchMacros = async () => {
-        const url = `https://api.edamam.com/api/nutrition-data?app_id=c6d34f6b&app_key=ad4f63207634378a114a5d09a9afb26a&nutrition-type=cooking&ingr=100%20g%20${food}`
+    const fetchMacros = async (ingr) => {
+        const url = 'https://api.edamam.com/api/nutrition-data?app_id=c6d34f6b&app_key=ad4f63207634378a114a5d09a9afb26a&nutrition-type=cooking&ingr=100%20g%20' + ingr;
         const options = {
             method: 'GET',
             headers: {
@@ -22,19 +28,24 @@ const Breakfast = () => {
             return response.statusText;
         }
         const data = await response.json();
-        const food = data.hints
-        console.log(data);
+        const nutritionaValues = data.totalNutrients
+        console.log(nutritionaValues);
 
-        const nutrients = food.food.nutrients;
-        const calories = (Math.round(nutrients.ENERC_KCAL) * amount) + ' Kcal';
-        const carbs = (Math.round(nutrients.CHOCDF) * amount) + ' g carbs';
-        const protein = (Math.round(nutrients.PROCNT) * amount) + ' g protein';
-        const fats = (Math.round(nutrients.FAT) * amount) + ' g fats';
+        const currentCal = macros.calories;
+        const currentCarbs = macros.carbs;
+        const currentProtein = macros.protein;
+        const currentFats = macros.fats;
+
+        const calories = (Math.round((nutritionaValues.ENERC_KCAL.quantity) * (amount / 100)));
+        const carbs = (Math.round((nutritionaValues.CHOCDF.quantity) * (amount / 100)));
+        const protein = (Math.round((nutritionaValues.PROCNT.quantity) * (amount / 100)));
+        const fats = (Math.round((nutritionaValues.FAT.quantity) * (amount / 100)));
+
         const macronutrients = {
-            calories: calories,
-            carbs: carbs,
-            protein: protein,
-            fats: fats
+            calories: currentCal + calories,
+            carbs: currentCarbs + carbs,
+            protein: currentProtein + protein,
+            fats: currentFats + fats
         }
         setMacros(macronutrients);
         actions.logBreakfast(macronutrients)
@@ -45,7 +56,7 @@ const Breakfast = () => {
     function handleLog(e) {
         e.preventDefault();
         console.log(food);
-        fetchMacros();
+        fetchMacros(food);
     }
 
 
@@ -65,7 +76,16 @@ const Breakfast = () => {
                         <button type="submit" className="btn btn-primary">Log food</button>
                     </form>
                     <div id='macroCount'>
-                        hey
+                        {macros.calories != 0 ?
+                            <ul>
+                                <li>{macros.calories} kcal</li>
+                                <li>{macros.carbs} g carbs</li>
+                                <li>{macros.protein} g protein</li>
+                                <li>{macros.fats} g fats</li>
+                            </ul>
+                            :
+                            <Loading />
+                        }
                     </div>
                 </div>
             </div>
