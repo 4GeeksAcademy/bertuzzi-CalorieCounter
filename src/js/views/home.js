@@ -1,10 +1,7 @@
 import React from "react";
-import Breakfast from "./Breakfast.jsx";
-import Lunch from "./Lunch.jsx";
-import Dinner from "./Dinner.jsx";
-import Snacks from "./Snacks.jsx";
 import Banner from "../component/Banner.jsx";
 import Footer from '../component/Footer.jsx';
+import { Link } from "react-router-dom";
 
 export const Home = () => (
 	<>
@@ -12,10 +9,18 @@ export const Home = () => (
 		<div className="row">
 			<div className="col-8 col-md-10 col-sm-12 m-auto">
 				<Banner />
-				<Breakfast />
-				<Lunch />
-				<Dinner />
-				<Snacks />
+				<div className="meal">
+					<Link to='/breakfast'>Breakfast</Link>
+				</div>
+				<div className="meal">
+					<Link to='/lunch'>Lunch</Link>
+				</div>
+				<div className="meal">
+					<Link to='/dinner'>Dinner</Link>
+				</div>
+				<div className="meal">
+					<Link to='/snacks'>Snacks</Link>
+				</div>
 				<Footer />
 			</div>
 		</div>
