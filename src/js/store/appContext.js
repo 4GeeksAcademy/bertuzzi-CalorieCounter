@@ -21,7 +21,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-
+			state.actions.fetchStorage();
 		}, []);
 
 		return (
