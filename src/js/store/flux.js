@@ -36,13 +36,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				carbs: 0,
 				protein: 0,
 				fats: 0
-			},
+			}
 		},
 		actions: {
 
 			setPreferences: (targetMacros) => {
 				console.log(targetMacros);
 				setStore({ targetIntake: targetMacros });
+				localStorage.setItem('targetIntake', JSON.stringify(targetMacros));
 			},
 
 			fetchMacros: async (ingr, amount, meal) => {

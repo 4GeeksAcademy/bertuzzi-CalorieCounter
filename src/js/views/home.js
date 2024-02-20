@@ -5,25 +5,28 @@ import { Link } from "react-router-dom";
 
 export const Home = () => (
 	<>
-	<div className="container-fluid">
-		<div className="row">
-			<div className="col-8 col-md-10 col-sm-12 m-auto">
-				<Banner />
-				<div className="meal">
-					<Link to='/breakfast'>Breakfast</Link>
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-8 col-md-10 col-sm-12 m-auto">
+					<Banner />
+					<div className="meal">
+						<Link to='/breakfast'>Breakfast</Link>
+					</div>
+					<div className="meal">
+						<Link to='/lunch'>Lunch</Link>
+					</div>
+					<div className="meal">
+						<Link to='/dinner'>Dinner</Link>
+					</div>
+					<div className="meal">
+						<Link to='/snacks'>Snacks</Link>
+					</div>
+					<div className="meal">
+						<Link to='/settings'>Settings</Link>
+					</div>
+					<Footer />
 				</div>
-				<div className="meal">
-					<Link to='/lunch'>Lunch</Link>
-				</div>
-				<div className="meal">
-					<Link to='/dinner'>Dinner</Link>
-				</div>
-				<div className="meal">
-					<Link to='/snacks'>Snacks</Link>
-				</div>
-				<Footer />
 			</div>
 		</div>
-	</div>
 	</>
 );
