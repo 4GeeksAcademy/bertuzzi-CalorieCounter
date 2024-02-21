@@ -11,17 +11,28 @@ const Settings = () => {
 
   function handlePreferences(e) {
     e.preventDefault();
-    const targetCarbs = Math.round((calories * (carbs / 100)) / 4);
-    const targetProtein = Math.round((calories * (protein / 100)) / 4);
-    const targetFats = Math.round((calories * (fats / 100)) / 9);
+    let inputTarget = parseInt(carbs) + parseInt(protein) + parseInt(fats);
+    console.log(calories, carbs, protein, fats, inputTarget)
+    if (inputTarget != 100) {
+      alert('total macronutrient percentages should amount to 100% ')
+    }
+    else {
+      const targetCarbs = Math.round((calories * (carbs / 100)) / 4);
+      const targetProtein = Math.round((calories * (protein / 100)) / 4);
+      const targetFats = Math.round((calories * (fats / 100)) / 9);
 
-    const targetMacros = {
-      calories: calories,
-      carbs: targetCarbs,
-      protein: targetProtein,
-      fats: targetFats
-    };
-    actions.setPreferences(targetMacros);
+      const targetMacros = {
+        calories: parseInt(calories),
+        carbs: targetCarbs,
+        protein: targetProtein,
+        fats: targetFats
+      };
+      actions.setPreferences(targetMacros);
+    }
+    document.getElementById('calories').value = '';
+    document.getElementById('carbs').value = '';
+    document.getElementById('protein').value = '';
+    document.getElementById('fats').value = '';
   }
 
   return (
@@ -29,30 +40,19 @@ const Settings = () => {
       <div className='row'>
         <div className="col-8 col-md-10 col-sm-12 m-auto">
           <form onSubmit={handlePreferences}>
-            <div className="input-group" style={{ width: '30vw' }}>
-              <label htmlFor="calories">Target Calories</label>
-              <input type="number" className="form-control ml-5" id="calories" placeholder="Set target calories" maxLength="2" step="5" style={{ marginLeft: '30px', width: '50%' }} onChange={(e) => { parseInt(setCalories(e.target.value)) }} />
+            <label htmlFor="calories">Target Calories</label>
+            <input type="text" className="form-control ml-5" id="calories" placeholder="Set target calories" maxLength="4" style={{ marginLeft: '30px', width: '50%' }} pattern="[0-9]{4}" required onChange={(e) => { parseInt(setCalories(e.target.value)) }} />
+            <div className="form-group my-3" style={{ width: '30vw' }}>
+              <label htmlFor="text">Target Carbs</label>
+              <input type="text" className="form-control ml-5" id="carbs" placeholder="Set target carbs %" maxLength="2" style={{ marginLeft: '30px', width: '50%' }} pattern="[0-9]{2}" required onChange={(e) => { parseInt(setCarbs(e.target.value)) }} />
             </div>
-            <div className="input-group my-3" style={{ width: '30vw' }}>
-              <label htmlFor="carbs">Target Carbs</label>
-              <input type="number" className="form-control ml-5" id="carbs" placeholder="Set target carbs %" maxLength="2" step="5" style={{ marginLeft: '30px', width: '50%' }} onChange={(e) => { parseInt(setCarbs(e.target.value)) }} />
-              <div className="input-group-prepend">
-                <span className="input-group-text">%</span>
-              </div>
-            </div>
-            <div className="input-group my-3" style={{ width: '30vw' }}>
+            <div className="form-group my-3" style={{ width: '30vw' }}>
               <label htmlFor="protein">Target Protein</label>
-              <input type="number" className="form-control ml-5" id="protein" placeholder="Set target protein %" maxLength="2" step="5" style={{ marginLeft: '30px', width: '50%' }} onChange={(e) => { parseInt(setProtein(e.target.value)) }} />
-              <div className="input-group-prepend">
-                <span className="input-group-text">%</span>
-              </div>
+              <input type="text" className="form-control ml-5" id="protein" placeholder="Set target protein %" maxLength="2" style={{ marginLeft: '30px', width: '50%' }} pattern="[0-9]{2}" required onChange={(e) => { parseInt(setProtein(e.target.value)) }} />
             </div>
-            <div className="input-group my-3" style={{ width: '30vw' }}>
+            <div className="form-group my-3" style={{ width: '30vw' }}>
               <label htmlFor="fats">Target Fats</label>
-              <input type="number" className="form-control" id="fats" placeholder="Set target fats %" maxLength="2" step="5" style={{ marginLeft: '30px', width: '50%' }} onChange={(e) => { parseInt(setFats(e.target.value)) }} />
-              <div className="input-group-prepend">
-                <span className="input-group-text">%</span>
-              </div>
+              <input type="text" className="form-control" id="fats" placeholder="Set target fats %" maxLength="2" style={{ marginLeft: '30px', width: '50%' }} pattern="[0-9]{2}" required onChange={(e) => { parseInt(setFats(e.target.value)) }} />
             </div>
             <button type="submit" className="btn btn-primary">Log food</button>
           </form>

@@ -123,7 +123,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						fats: currentFats + fats
 					}
 					console.log(macronutrients);
-					setStore({ snacks: macronutrients });
+					setStore({ dinner: macronutrients });
 					localStorage.setItem('dinner', JSON.stringify(macronutrients));
 					setTimeout(() => {
 						localStorage.removeItem('dinner')
@@ -148,6 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setTimeout(() => {
 						localStorage.removeItem('snacks')
 					}, 600000);
+					getActions().calculateIntake();
 				}
 			},
 
@@ -178,7 +179,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fats: totFats
 				};
 				setStore({ currentIntake: totalIntake });
-				console.log(currentIntake);
+				console.log(totalIntake);
+				localStorage.setItem('currentIntake', JSON.stringify(totalIntake));
+				setTimeout(() => {
+					localStorage.removeItem('currentIntake')
+				}, 600000);
 			}
 
 		}

@@ -7,6 +7,7 @@ import Lunch from "./views/Lunch.jsx";
 import Dinner from "./views/Dinner.jsx";
 import Snacks from "./views/Snacks.jsx";
 import Settings from "./views/Settings.jsx";
+import Dashboard from "./views/Dashboard.jsx";
 import Banner from "./component/Banner.jsx";
 import Footer from "./component/Footer.jsx";
 import injectContext from "./store/appContext";
@@ -29,6 +30,7 @@ const Layout = () => {
 					<Route path="/dinner" element={<Dinner />} />
 					<Route path="/snacks" element={<Snacks />} />
 					<Route path="/settings" element={<Settings />} />
+					<Route path='/dashboard' element={<Dashboard />} />
 					<Route path="*" element={<h1>Not found!</h1>} />
 				</Routes>
 				<Footer />

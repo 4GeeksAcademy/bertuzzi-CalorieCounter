@@ -21,8 +21,11 @@ export const Home = () => (
 					<div className="meal">
 						<Link to='/snacks'>Snacks</Link>
 					</div>
-					<div className="meal">
+					<div className="settings">
 						<Link to='/settings'>Settings</Link>
+					</div>
+					<div className="dashboard">
+						<Link to='/dashboard'>Dashboard</Link>
 					</div>
 					<Footer />
 				</div>
