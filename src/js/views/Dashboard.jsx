@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 import CompareIntakes from '../component/CompareIntakes.jsx';
 import Loading from '../component/Spinner.jsx';
+import MacroBar from '../component/Macrobar.jsx';
 
 const Dashboard = () => {
 
@@ -21,6 +22,12 @@ const Dashboard = () => {
       {
         targetMacros && actualMacros ?
           <CompareIntakes macros={macronutrients} />
+          :
+          <Loading />
+      }
+      {
+        targetMacros && actualMacros ?
+          <MacroBar macros={macronutrients} />
           :
           <Loading />
       }
