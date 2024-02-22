@@ -8,7 +8,6 @@ export const Home = () => (
 		<div className="container-fluid">
 			<div className="row">
 				<div className="col-8 col-md-10 col-sm-12 m-auto">
-					<Banner />
 					<div className="meal">
 						<Link to='/breakfast'>Breakfast</Link>
 					</div>
@@ -27,7 +26,6 @@ export const Home = () => (
 					<div className="dashboard">
 						<Link to='/dashboard'>Dashboard</Link>
 					</div>
-					<Footer />
 				</div>
 			</div>
 		</div>
