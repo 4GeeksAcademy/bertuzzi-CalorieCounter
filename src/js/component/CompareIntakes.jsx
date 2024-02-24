@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 const CompareIntakes = ({ macros }) => {
     return (
         <div>
-            <Table striped bordered hover>
+            <Table hover stripped className='comparison-table'>
                 <thead>
                     <tr>
                         <th></th>
@@ -14,10 +14,10 @@ const CompareIntakes = ({ macros }) => {
                 </thead>
                 <tbody>
                     {macros.map((macro, index) => (
-                        <tr key={index} className={Object.values(macro)[1] <= Object.values(macro)[2] ? 'table-success' : 'table-danger'}>
+                        <tr key={index} className={Object.values(macro)[1] <= Object.values(macro)[2] ? 'table-normal' : 'table-info'}>
                             <td>{Object.values(macro)[0]}</td>
-                            <td>{Object.values(macro)[1]}</td>
-                            <td>{Object.values(macro)[2]}</td>
+                            <td>{Object.values(macro)[1]} {Object.values(macro)[0] == 'Calories' ? ' Kcal' : ' g'}</td>
+                            <td>{Object.values(macro)[2]} {Object.values(macro)[0] == 'Calories' ? ' Kcal' : ' g'}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -27,3 +27,4 @@ const CompareIntakes = ({ macros }) => {
 };
 
 export default CompareIntakes;
+

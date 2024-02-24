@@ -32,7 +32,9 @@ const Breakfast = () => {
                                 <label for="quantity">Quantity</label>
                                 <input type="number" className="form-control" id="quantity" placeholder="Quantity" onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
                             </div>
-                            <button type="submit" className="btn btn-primary">Log food</button>
+                            <div className='d-flex justify-content-center'>
+                                <button type="submit" className="btn btn-primary">Log food</button>
+                            </div>
                         </form>
                         <div id='macroCount'>
                             {macros.calories != 0 ?

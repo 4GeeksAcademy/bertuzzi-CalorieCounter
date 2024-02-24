@@ -12,10 +12,10 @@ const Dashboard = () => {
   const actualMacros = store.currentIntake;
 
   const macronutrients = [
-    { 'nutritionalValue': 'calories', 'currentKcal': actualMacros.calories, 'targetKcal': targetMacros.calories },
-    { 'nutritionalValue': 'carbs', 'currentKcal': actualMacros.carbs, 'targetKcal': targetMacros.carbs },
-    { 'nutritionalValue': 'protein', 'currentKcal': actualMacros.protein, 'targetKcal': targetMacros.protein },
-    { 'nutritionalValue': 'fats', 'currentKcal': actualMacros.fats, 'targetKcal': targetMacros.fats }
+    { 'nutritionalValue': 'Calories', 'currentKcal': actualMacros.calories, 'targetKcal': targetMacros.calories },
+    { 'nutritionalValue': 'Carbs', 'currentKcal': actualMacros.carbs, 'targetKcal': targetMacros.carbs },
+    { 'nutritionalValue': 'Protein', 'currentKcal': actualMacros.protein, 'targetKcal': targetMacros.protein },
+    { 'nutritionalValue': 'Fats', 'currentKcal': actualMacros.fats, 'targetKcal': targetMacros.fats }
   ]
 
   return (

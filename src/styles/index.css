@@ -1,7 +1,38 @@
 body{
-    padding: 10px 40px 10px 40px;
-    border-style: solid;
+    margin-top: 0px;
+    /* border-style: solid;
     border-color: azure;
     border-width: 2px;
-    border-radius: 10%;
+    border-radius: 15%; */
+}
+.banner-header{
+    padding-top: 10px;
+    background-color: #f9f9f9;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+}
+.footer{
+    background-color: #06e;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    position: fixed;
+    bottom:0;
+    width:100%;
+    --bs-gutter-x: 0;
+}
+.footer a{
+    text-decoration: none;
+    color:white;
+}
+.btn{
+    margin: 20px;
+    background-color: #06e;
+}
+.form-group{
+    margin: 15px
+}
+label{
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }

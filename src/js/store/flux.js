@@ -148,8 +148,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setTimeout(() => {
 						localStorage.removeItem('snacks')
 					}, 600000);
-					getActions().calculateIntake();
 				}
+				getActions().calculateIntake();
 			},
 
 			fetchStorage: () => {
