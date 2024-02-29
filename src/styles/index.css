@@ -43,3 +43,6 @@ label{
     border-color: #708090;
     border-radius: 10%;
 }
+.summary a{
+    text-decoration: none;
+}

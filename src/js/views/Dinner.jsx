@@ -26,11 +26,11 @@ const Dinner = () => {
             <form onSubmit={handleLog}>
               <div className="form-group">
                 <label htmlFor="food">Log Food</label>
-                <input type="text" className="form-control" id="food" placeholder="Log food" onChange={(e) => { setFood(e.target.value) }} />
+                <input type="text" className="form-control" id="food" placeholder="Log food" onChange={(e) => { setFood(e.target.value) }} required />
               </div>
               <div className="form-group">
                 <label htmlFor="quantity">Quantity</label>
-                <input type="number" className="form-control" id="quantity" placeholder="Quantity" onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
+                <input type="number" className="form-control" id="quantity" placeholder="Quantity" onChange={(e) => { setAmount(parseInt(e.target.value)) }} required min='0' />
               </div>
               <div className='d-flex justify-content-center'>
                 <button type="submit" className="btn btn-primary">Log food</button>

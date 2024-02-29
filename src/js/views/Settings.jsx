@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
+import { useNavigate } from 'react-router';
 
 const Settings = () => {
-
+  const navigate = useNavigate()
   const { store, actions } = useContext(Context);
   const [calories, setCalories] = useState(0);
   const [carbs, setCarbs] = useState(0);
@@ -33,6 +34,7 @@ const Settings = () => {
     document.getElementById('carbs').value = '';
     document.getElementById('protein').value = '';
     document.getElementById('fats').value = '';
+    navigate('/')
   }
 
   return (
