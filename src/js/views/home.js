@@ -1,15 +1,28 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext.js";
+import { Link } from "react-router-dom";
+import Summary from "../component/Summary.jsx";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+
+export const Home = () => {
+	const { store, actions } = useContext(Context)
+	const breakfast = store.breakfast;
+	const lunch = store.lunch;
+	const dinner = store.dinner;
+	const snacks = store.snacks;
+
+	return (
+		<>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-8 col-md-10 col-sm-12 m-auto">
+						<Summary meal='breakfast' macros={breakfast} />
+						<Summary meal='lunch' macros={lunch} />
+						<Summary meal='dinner' macros={dinner} />
+						<Summary meal='snacks' macros={snacks} />
+					</div>
+				</div>
+			</div>
+		</>
+	)
+}

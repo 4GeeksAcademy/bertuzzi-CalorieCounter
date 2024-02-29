@@ -1,14 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+import Breakfast from "./views/Breakfast.jsx";
+import Lunch from "./views/Lunch.jsx";
+import Dinner from "./views/Dinner.jsx";
+import Snacks from "./views/Snacks.jsx";
+import Settings from "./views/Settings.jsx";
+import Dashboard from "./views/Dashboard.jsx";
+import Banner from "./component/Banner.jsx";
+import Footer from "./component/Footer.jsx";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
 
 //create your first component
 const Layout = () => {
@@ -19,16 +22,18 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/demo" element={<Demo />} />
-						<Route path="/single/:theid" element={<Single />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
-					</Routes>
-					<Footer />
-				</ScrollToTop>
+				<Banner />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/breakfast" element={<Breakfast />} />
+					<Route path="/lunch" element={<Lunch />} />
+					<Route path="/dinner" element={<Dinner />} />
+					<Route path="/snacks" element={<Snacks />} />
+					<Route path="/settings" element={<Settings />} />
+					<Route path='/dashboard' element={<Dashboard />} />
+					<Route path="*" element={<h1>Not found!</h1>} />
+				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</div>
 	);
