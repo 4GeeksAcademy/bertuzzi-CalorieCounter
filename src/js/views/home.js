@@ -1,33 +1,28 @@
-import React from "react";
-import Banner from "../component/Banner.jsx";
-import Footer from '../component/Footer.jsx';
+import React, { useContext } from "react";
+import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
+import Summary from "../component/Summary.jsx";
 
-export const Home = () => (
-	<>
-		<div className="container-fluid">
-			<div className="row">
-				<div className="col-8 col-md-10 col-sm-12 m-auto">
-					<div className="meal">
-						<Link to='/breakfast'>Breakfast</Link>
-					</div>
-					<div className="meal">
-						<Link to='/lunch'>Lunch</Link>
-					</div>
-					<div className="meal">
-						<Link to='/dinner'>Dinner</Link>
-					</div>
-					<div className="meal">
-						<Link to='/snacks'>Snacks</Link>
-					</div>
-					<div className="settings">
-						<Link to='/settings'>Settings</Link>
-					</div>
-					<div className="dashboard">
-						<Link to='/dashboard'>Dashboard</Link>
+
+export const Home = () => {
+	const { store, actions } = useContext(Context)
+	const breakfast = store.breakfast;
+	const lunch = store.lunch;
+	const dinner = store.dinner;
+	const snacks = store.snacks;
+
+	return (
+		<>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-8 col-md-10 col-sm-12 m-auto">
+						<Summary meal='breakfast' macros={breakfast} />
+						<Summary meal='lunch' macros={lunch} />
+						<Summary meal='dinner' macros={dinner} />
+						<Summary meal='snacks' macros={snacks} />
 					</div>
 				</div>
 			</div>
-		</div>
-	</>
-);
+		</>
+	)
+}
