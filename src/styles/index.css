@@ -15,7 +15,7 @@ body{
     background-color: #06e;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
-    position: fixed;
+    position: absolute;
     bottom:0;
     width:100%;
     --bs-gutter-x: 0;
@@ -45,4 +45,13 @@ label{
 }
 .summary a{
     text-decoration: none;
+}
+
+.loggedFood{
+    padding: 20px 10px 20px 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #708090;
+    border-radius: 10%;
+    margin: 0% 10% 0% 10%;
 }
