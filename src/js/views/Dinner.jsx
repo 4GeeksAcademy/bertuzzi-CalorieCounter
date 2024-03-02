@@ -1,19 +1,24 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
 import Loading from '../component/Spinner.jsx';
+import LoggedFood from '../component/LoggedFood.jsx';
 
 const Dinner = () => {
 
   const [food, setFood] = useState({});
   const [amount, setAmount] = useState();
+  const [loggedItems, setLoggedItems] = useState([]);
   const { store, actions } = useContext(Context);
 
   const macros = store.dinner;
+  const loggedDinner = store.loggedDinner;
 
   function handleLog(e) {
     e.preventDefault();
     console.log(food);
-    actions.fetchMacros(food, amount, 'dinner');
+    let newLog = { food: food, qty: amount };
+    setLoggedItems(newLog);
+    actions.fetchMacros(food, amount, newLog, 'dinner');
     document.getElementById('food').value = '';
     document.getElementById('quantity').value = '';
   }
@@ -47,6 +52,9 @@ const Dinner = () => {
                 :
                 <Loading />
               }
+            </div>
+            <div className='loggedFood'>
+              <LoggedFood loggedFood={loggedDinner} />
             </div>
           </div>
         </div>

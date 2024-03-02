@@ -7,20 +7,21 @@ const Breakfast = () => {
 
     const [food, setFood] = useState({});
     const [amount, setAmount] = useState();
-    const [loggedItems, setLoggedItems] = useState([])
+    const [loggedItems, setLoggedItems] = useState([]);
     const { store, actions } = useContext(Context);
 
     const macros = store.breakfast;
+    const loggedBreakfast = store.loggedBreakfast;
 
     function handleLog(e) {
         e.preventDefault();
         console.log(food);
-        actions.fetchMacros(food, amount, 'breakfast');
+        let newLog = { food: food, qty: amount };
+        setLoggedItems(newLog);
+        console.log(loggedItems)
+        actions.fetchMacros(food, amount, newLog, 'breakfast');
         document.getElementById('food').value = '';
         document.getElementById('quantity').value = '';
-        let newLog = { food: food, qty: amount }
-        setLoggedItems([...loggedItems, newLog])
-        console.log(loggedItems)
     }
 
     return (
@@ -53,8 +54,8 @@ const Breakfast = () => {
                                 <Loading />
                             }
                         </div>
-                        <div>
-                            <LoggedFood loggedFood={loggedItems} />
+                        <div className='loggedFood'>
+                            <LoggedFood loggedFood={loggedBreakfast} />
                         </div>
                     </div>
                 </div>
