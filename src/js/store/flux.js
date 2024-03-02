@@ -13,24 +13,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				protein: 0,
 				fats: 0
 			},
+			loggedBreakfast: [],
 			lunch: {
 				calories: 0,
 				carbs: 0,
 				protein: 0,
 				fats: 0
 			},
+			loggedFood: [],
 			dinner: {
 				calories: 0,
 				carbs: 0,
 				protein: 0,
 				fats: 0
 			},
+			loggedDinner: [],
 			snacks: {
 				calories: 0,
 				carbs: 0,
 				protein: 0,
 				fats: 0
 			},
+			loggedSnacks: [],
 			currentIntake: {
 				calories: 0,
 				carbs: 0,
@@ -46,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.setItem('targetIntake', JSON.stringify(targetMacros));
 			},
 
-			fetchMacros: async (ingr, amount, meal) => {
+			fetchMacros: async (ingr, amount, loggedFood, meal) => {
 				const url = 'https://api.edamam.com/api/nutrition-data?app_id=c6d34f6b&app_key=ad4f63207634378a114a5d09a9afb26a&nutrition-type=cooking&ingr=100%20g%20' + ingr;
 				const options = {
 					method: 'GET',
@@ -71,12 +75,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let currentCarbs = 0;
 				let currentProtein = 0;
 				let currentFats = 0;
+				let loggedFoods = [];
 
 				if (meal == 'breakfast') {
 					currentCal = getStore().breakfast.calories;
 					currentCarbs = getStore().breakfast.carbs;
 					currentProtein = getStore().breakfast.protein;
 					currentFats = getStore().breakfast.fats;
+					loggedFoods = getStore().loggedBreakfast;
+					let newLogs = [...loggedFoods, loggedFood];
 
 					let macronutrients = {
 						calories: currentCal + calories,
@@ -86,9 +93,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					console.log(macronutrients);
 					setStore({ breakfast: macronutrients });
+					setStore({ loggedBreakfast: newLogs });
 					localStorage.setItem('breakfast', JSON.stringify(macronutrients));
+					localStorage.setItem('loggedBreakfast', JSON.stringify(newLogs))
 					setTimeout(() => {
 						localStorage.removeItem('breakfast')
+						localStorage.removeItem('loggedBreakfast')
 					}, 600000);
 				}
 				else if (meal == 'lunch') {
@@ -96,6 +106,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					currentCarbs = getStore().lunch.carbs;
 					currentProtein = getStore().lunch.protein;
 					currentFats = getStore().lunch.fats;
+					loggedFoods = getStore().loggedLunch;
+					let newLogs = [...loggedFoods, loggedFood];
 
 					let macronutrients = {
 						calories: currentCal + calories,
@@ -105,9 +117,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					console.log(macronutrients);
 					setStore({ lunch: macronutrients });
+					setStore({ loggedLunch: newLogs });
 					localStorage.setItem('lunch', JSON.stringify(macronutrients));
+					localStorage.setItem('loggedLunch', JSON.stringify(newLogs));
 					setTimeout(() => {
-						localStorage.removeItem('lunch')
+						localStorage.removeItem('lunch');
+						localStorage.removeItem('loggedLunch');
 					}, 600000);
 				}
 				else if (meal == 'dinner') {
@@ -115,6 +130,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					currentCarbs = getStore().dinner.carbs;
 					currentProtein = getStore().dinner.protein;
 					currentFats = getStore().dinner.fats;
+					loggedFoods = getStore().loggedDinner;
+					let newLogs = [...loggedFoods, loggedFood];
 
 					let macronutrients = {
 						calories: currentCal + calories,
@@ -124,9 +141,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					console.log(macronutrients);
 					setStore({ dinner: macronutrients });
+					setStore({ loggedDinner: newLogs });
 					localStorage.setItem('dinner', JSON.stringify(macronutrients));
+					localStorage.setItem('loggedDinner', JSON.stringify(newLogs));
 					setTimeout(() => {
 						localStorage.removeItem('dinner')
+						localStorage.removeItem('loggedDinner')
 					}, 600000);
 				}
 				else if (meal == 'snacks') {
@@ -134,6 +154,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					currentCarbs = getStore().snacks.carbs;
 					currentProtein = getStore().snacks.protein;
 					currentFats = getStore().snacks.fats;
+					loggedFoods = getStore().loggedSnacks;
+					let newLogs = [...loggedFoods, loggedFood];
 
 					let macronutrients = {
 						calories: currentCal + calories,
@@ -141,12 +163,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						protein: currentProtein + protein,
 						fats: currentFats + fats
 					}
-
 					console.log(macronutrients);
 					setStore({ snacks: macronutrients });
+					setStore({ loggedSnacks: newLogs })
 					localStorage.setItem('snacks', JSON.stringify(macronutrients));
+					localStorage.setItem('loggedSnacks', JSON.stringify(newLogs));
 					setTimeout(() => {
 						localStorage.removeItem('snacks')
+						localStorage.removeItem('loggedSnacks')
 					}, 600000);
 				}
 				getActions().calculateIntake();
@@ -165,6 +189,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ snacks: loggedSnacks });
 				const currentTotal = localStorage.getItem('currentIntake') ? JSON.parse(localStorage.getItem('currentIntake')) : { calories: 0, carbs: 0, protein: 0, fats: 0 };
 				setStore({ currentIntake: currentTotal });
+				const breakfastLogs = localStorage.getItem('loggedBreakfast') ? JSON.parse(localStorage.getItem('loggedBreakfast')) : [];
+				setStore({ loggedBreakfast: breakfastLogs });
+				const lunchLogs = localStorage.getItem('loggedLunch') ? JSON.parse(localStorage.getItem('loggedLunch')) : [];
+				setStore({ loggedLunch: lunchLogs });
+				const dinnerLogs = localStorage.getItem('loggedDinner') ? JSON.parse(localStorage.getItem('loggedDinner')) : [];
+				setStore({ loggedDinner: dinnerLogs })
+				const snackLogs = localStorage.getItem('loggedSnacks') ? JSON.parse(localStorage.getItem('loggedSnacks')) : [];
+				setStore({ loggedSnacks: snackLogs })
 			},
 
 			calculateIntake: () => {

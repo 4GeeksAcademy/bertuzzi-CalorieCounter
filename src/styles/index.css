@@ -12,21 +12,30 @@ body{
     border-bottom-right-radius: 100%;
 }
 .footer{
-    background-color: #06e;
+    background-color: #ecff76;
+    color:black;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
-    position: fixed;
+    position: absolute;
     bottom:0;
     width:100%;
     --bs-gutter-x: 0;
 }
 .footer a{
     text-decoration: none;
-    color:white;
+    color:black;
 }
 .btn{
     margin: 20px;
-    background-color: #06e;
+    background-color: #ecff76;
+    color:black;
+    border-color: #ecff76;
+}
+.btn:hover{
+    margin: 20px;
+    background-color: black ;
+    color:#ecff76;
+    border-color: #ecff76;
 }
 .form-group{
     margin: 15px
@@ -40,6 +49,20 @@ label{
     padding: 15px 10px 0px 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: #708090;
+    border-color: black;
     border-radius: 10%;
+}
+.summary a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.loggedFood{
+    padding: 20px 10px 20px 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10%;
+    margin: 0% 10% 0% 10%;
 }
