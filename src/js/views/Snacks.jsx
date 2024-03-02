@@ -1,19 +1,24 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
 import Loading from '../component/Spinner.jsx';
+import LoggedFood from '../component/LoggedFood.jsx';
 
 const Snacks = () => {
 
   const [food, setFood] = useState({});
   const [amount, setAmount] = useState();
+  const [loggedItems, setLoggedItems] = useState([]);
   const { store, actions } = useContext(Context);
 
   const macros = store.snacks;
+  const loggedSnacks = store.loggedSnacks;
 
   function handleLog(e) {
     e.preventDefault();
     console.log(food);
-    actions.fetchMacros(food, amount, 'snacks');
+    let newLog = { food: food, qty: amount };
+    setLoggedItems(newLog);
+    actions.fetchMacros(food, amount, newLog, 'snacks');
     document.getElementById('food').value = '';
     document.getElementById('quantity').value = '';
   }
@@ -26,11 +31,11 @@ const Snacks = () => {
             <form onSubmit={handleLog}>
               <div className="form-group">
                 <label htmlFor="food">Log Food</label>
-                <input type="text" className="form-control" id="food" placeholder="Log food" onChange={(e) => { setFood(e.target.value) }} />
+                <input type="text" className="form-control" id="food" placeholder="Log food" onChange={(e) => { setFood(e.target.value) }} required />
               </div>
               <div className="form-group">
                 <label htmlFor="quantity">Quantity</label>
-                <input type="number" className="form-control" id="quantity" placeholder="Quantity" onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
+                <input type="number" className="form-control" id="quantity" placeholder="Quantity" onChange={(e) => { setAmount(parseInt(e.target.value)) }} required min='0' />
               </div>
               <div className='d-flex justify-content-center'>
                 <button type="submit" className="btn btn-primary">Log food</button>
@@ -47,6 +52,9 @@ const Snacks = () => {
                 :
                 <Loading />
               }
+            </div>
+            <div className='loggedFood'>
+              <LoggedFood loggedFood={loggedSnacks} />
             </div>
           </div>
         </div>
