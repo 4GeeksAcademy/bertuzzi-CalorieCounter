@@ -42,14 +42,34 @@ const Breakfast = () => {
                                 <button type="submit" className="btn btn-primary">Log food</button>
                             </div>
                         </form>
-                        <div id='macroCount'>
+                        <div id='macroCount d-flex align-content-center'>
                             {macros.calories != 0 ?
-                                <ul>
-                                    <li>{macros.calories} kcal</li>
-                                    <li>{macros.carbs} g carbs</li>
-                                    <li>{macros.protein} g protein</li>
-                                    <li>{macros.fats} g fats</li>
-                                </ul>
+                                <table className="table mb-5" style={{ width: '60%', margin: 'auto' }}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Macronutrient</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{macros.calories} kcal</td>
+                                            <td>Calories</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{macros.carbs} g</td>
+                                            <td>Carbohydrates</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{macros.protein} g</td>
+                                            <td>Protein</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{macros.fats} g</td>
+                                            <td>Fats</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 :
                                 <Loading />
                             }
@@ -59,7 +79,7 @@ const Breakfast = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

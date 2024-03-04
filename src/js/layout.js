@@ -23,16 +23,18 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<Banner />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/breakfast" element={<Breakfast />} />
-					<Route path="/lunch" element={<Lunch />} />
-					<Route path="/dinner" element={<Dinner />} />
-					<Route path="/snacks" element={<Snacks />} />
-					<Route path="/settings" element={<Settings />} />
-					<Route path='/dashboard' element={<Dashboard />} />
-					<Route path="*" element={<h1>Not found!</h1>} />
-				</Routes>
+				<div className="wrapper">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/breakfast" element={<Breakfast />} />
+						<Route path="/lunch" element={<Lunch />} />
+						<Route path="/dinner" element={<Dinner />} />
+						<Route path="/snacks" element={<Snacks />} />
+						<Route path="/settings" element={<Settings />} />
+						<Route path='/dashboard' element={<Dashboard />} />
+						<Route path="*" element={<h1>Not found!</h1>} />
+					</Routes>
+				</div>
 				<Footer />
 			</BrowserRouter>
 		</div>
