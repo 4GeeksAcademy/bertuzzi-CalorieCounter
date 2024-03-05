@@ -40,7 +40,7 @@ const Settings = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className="col-8 col-md-10 col-sm-12 d-flex justify-content-center'">
+        <div className="col-8 col-md-10 col-sm-12 m-auto">
           <form onSubmit={handlePreferences} style={{ width: '100%' }}>
             <div className="form-group my-3" style={{ width: '70%' }}>
               <label htmlFor="calories">Target Calories</label>

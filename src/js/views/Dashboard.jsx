@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className='row'>
-      <div className="col-8 col-md-10 col-sm-12 m-auto">
+      <div className="col-6 col-md-8 col-sm-8 m-auto">
         {
           targetMacros.calories != 0 ?
             <div>
