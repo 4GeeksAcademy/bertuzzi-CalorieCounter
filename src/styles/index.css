@@ -1,9 +1,6 @@
 body{
     margin-top: 0px;
-    /* border-style: solid;
-    border-color: azure;
-    border-width: 2px;
-    border-radius: 15%; */
+    min-height: 100vh;
 }
 .banner-header{
     padding-top: 10px;
@@ -16,10 +13,12 @@ body{
     color:black;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
-    position: absolute;
-    bottom:0;
+    margin-bottom:0px;
     width:100%;
     --bs-gutter-x: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 .footer a{
     text-decoration: none;

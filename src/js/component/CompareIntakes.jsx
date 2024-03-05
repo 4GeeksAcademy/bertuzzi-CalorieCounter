@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 const CompareIntakes = ({ macros }) => {
     return (
         <div>
-            <Table hover stripped className='comparison-table'>
+            <Table hover stripped className='comparison-table mx-auto mb-5' style={{ width: '60%' }}>
                 <thead>
                     <tr>
                         <th></th>
